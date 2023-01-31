@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import Comments from './Comments';
+import Detail from './Detail';
 
 function PostList({}) {
 	 const [posts, setPosts] = useState([]);
-     const [search, setSearch] = useState([]);
+     const [search, setSearch] = useState("");
      const [select, setSelect] = useState();
      const [detail, setDetail] = useState(false);
      
@@ -23,16 +23,29 @@ function PostList({}) {
     console.log(e.target.value)
   
      setDetail(true);
-  
-  
     }
+
+    function closeBtn() {
+        setDetail(false);
+       }
+
+    console.log(search);
    return (
    <div>
      { detail ? <div>
-        <Comments posts={posts} select={select}/>
+        <button onClick={closeBtn}>close</button>
+        <Detail posts={posts} select={select} detail={detail}/>
      </div>:
      <div>
-   { posts.map((post, index) => { return <ul id="post">
+    <form>
+    <input type="text" id="sBar" name="sBar"
+    onChange={(e) => setSearch(e.target.value)}></input>
+    </form>
+   { posts.filter((item)=> {
+    return search === ''
+        ? item
+        : item.title.includes(search);
+   }).map((post, index) => { return <ul id="post">
    <li  key={index} > <p> {post.title}</p> <button value={post.id} onClick={getPost} >view</button></li>
    </ul>}) 
 }</div>

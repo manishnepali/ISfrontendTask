@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-function Comments(props) {
+function Detail(props) {
   const [comments, setComments] = useState([]);
 console.log(props.select); 
 const select = props.select;
@@ -14,11 +14,15 @@ const select = props.select;
     fetchData()
     .catch(console.error);
    }, [])
+
+   
+
 console.log(comments)
     return (
       <div className="Comments">
-        <h1>{props.posts[select].title}</h1>
-        <p>{props.posts[select].body}</p>
+   
+        <h1>{props.posts[select-1].title}</h1>
+        <p>{props.posts[select-1].body}</p>
         <h1>Comments</h1>
         {comments.map((comment, index) => {return <ul><li>{comment.body}</li></ul>})}
 
@@ -26,5 +30,5 @@ console.log(comments)
     );
   }
   
-  export default Comments;
+  export default Detail;
   
