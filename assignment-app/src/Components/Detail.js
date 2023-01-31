@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 
 function Detail(props) {
   const [comments, setComments] = useState([]);
-console.log(props.select); 
 const select = props.select;
+
+ /* Fetch data from an API. */
    useEffect((props)=>{
     console.log(props)
     const fetchData = async () =>{
